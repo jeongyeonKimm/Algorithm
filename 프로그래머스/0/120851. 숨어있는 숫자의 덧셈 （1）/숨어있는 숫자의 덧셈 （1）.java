@@ -3,7 +3,7 @@ class Solution {
         int answer = 0;
         
         for (char c : my_string.toCharArray()) {
-            if (c >= '0' && c <= '9') {
+            if (Character.isDigit(c)) {
                 answer += (int) (c - '0');
             }
         }
