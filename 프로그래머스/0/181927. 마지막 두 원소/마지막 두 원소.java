@@ -4,18 +4,18 @@ import java.util.stream.Collectors;
 
 class Solution {
     public int[] solution(int[] num_list) {
-        List<Integer> result = Arrays.stream(num_list)
-            .boxed()
-            .collect(Collectors.toList());
+        int[] result = new int[num_list.length + 1];
         
-        if (num_list[num_list.length - 1] > num_list[num_list.length - 2]) {
-            result.add(num_list[num_list.length - 1] - num_list[num_list.length - 2]);
-        } else {
-            result.add(num_list[num_list.length - 1] * 2);
+        for (int i = 0; i < num_list.length; i++) {
+            result[i] = num_list[i];
         }
         
-        return result.stream()
-            .mapToInt(i -> i)
-            .toArray();
+        if (num_list[num_list.length - 1] > num_list[num_list.length - 2]) {
+            result[result.length - 1] = num_list[num_list.length - 1] - num_list[num_list.length - 2];
+        } else {
+            result[result.length - 1] = num_list[num_list.length - 1] * 2;
+        }
+        
+        return result;
     }
 }
