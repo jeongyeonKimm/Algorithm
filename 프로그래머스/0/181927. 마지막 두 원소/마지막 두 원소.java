@@ -1,7 +1,3 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 class Solution {
     public int[] solution(int[] num_list) {
         int[] result = new int[num_list.length + 1];
