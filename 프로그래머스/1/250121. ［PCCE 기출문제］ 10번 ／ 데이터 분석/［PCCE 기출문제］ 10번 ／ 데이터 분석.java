@@ -15,13 +15,7 @@ class Solution {
             }
         }
         
-        Collections.sort(selected, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] arr1, int[] arr2) {
-                if (arr1[sortIdx] > arr2[sortIdx]) return 1;
-                else return -1;
-            }
-        });
+        Collections.sort(selected, (o1, o2) -> o1[sortIdx] - o2[sortIdx]);
         
         return selected.toArray(new int[selected.size()][]);
     }
