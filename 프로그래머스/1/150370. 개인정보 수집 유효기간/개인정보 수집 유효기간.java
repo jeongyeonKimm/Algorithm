@@ -8,27 +8,26 @@ class Solution {
             map.put(t[0], Integer.parseInt(t[1]));
         }
         
-        int tYear = Integer.parseInt(today.split("\\.")[0]);
-        int tMonth = Integer.parseInt(today.split("\\.")[1]);
-        int tDay = Integer.parseInt(today.split("\\.")[2]);
-        int tTotal = (tYear * 12 * 28) + (tMonth * 28) + tDay;
+        int todayTotal = getTotalDate(today);
         
         List<Integer> result = new ArrayList<>();
         for (int i = 0; i < privacies.length; i++) {
             String date = privacies[i].split(" ")[0];
             String term = privacies[i].split(" ")[1];
             
-            int year = Integer.parseInt(date.split("\\.")[0]);
-            int month = Integer.parseInt(date.split("\\.")[1]);
-            int day = Integer.parseInt(date.split("\\.")[2]);
-            month += map.get(term);
-            
-            int total = (year * 12 * 28) + (month * 28) + day;
-            if (tTotal >= total) result.add(i + 1);
+            int total = getTotalDate(date) + (map.get(term) * 28);
+            if (todayTotal >= total) result.add(i + 1);
         }
         
         return result.stream()
             .mapToInt(i -> i)
             .toArray();
+    }
+    
+    private int getTotalDate(String date) {
+        int year = Integer.parseInt(date.split("\\.")[0]);
+        int month = Integer.parseInt(date.split("\\.")[1]);
+        int day = Integer.parseInt(date.split("\\.")[2]);
+        return (year * 12 * 28) + (month * 28) + day;
     }
 }
