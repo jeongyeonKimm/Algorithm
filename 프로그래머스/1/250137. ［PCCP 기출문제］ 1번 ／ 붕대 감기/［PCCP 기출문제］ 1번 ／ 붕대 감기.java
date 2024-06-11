@@ -4,34 +4,23 @@ class Solution {
         int x = bandage[1];
         int y = bandage[2];
         
-        int lastAttack = attacks[attacks.length - 1][0];
         int maxHealth = health;
-        int continuousAttack = 0;
-        int j = 0;
+        int curHealth = health;
+        int contAttack = 0;
+        int prevAttack = 0;
         
-        for (int i = 1; i <= lastAttack; i++) {
-            if (attacks[j][0] == i) {
-                continuousAttack = 0;
-                health -= attacks[j][1];
-                if (health <= 0) {
-                    return -1;
-                }
-                j++;
-            } else {
-                continuousAttack++;
+        for (int[] attack : attacks) {
+            if (curHealth <= 0) return -1;
             
-                if (health < maxHealth) {
-                    health += x;
-                }
-                if (continuousAttack == t) {
-                    health += y;
-                    continuousAttack = 0;
-                }
-                
-                if (health > maxHealth) health = maxHealth;
-            }
+            contAttack = attack[0] - prevAttack - 1;
+            
+            curHealth = Math.min(maxHealth, curHealth + (x * contAttack));
+            curHealth = Math.min(maxHealth, curHealth + (y * (contAttack / t)));          
+            curHealth -= attack[1];
+            
+            prevAttack = attack[0];
         }
         
-        return health;
+        return curHealth <= 0 ? -1 : curHealth;
     }
 }
