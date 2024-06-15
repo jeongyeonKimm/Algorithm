@@ -3,12 +3,10 @@ class Solution {
         int width = 0;
         int height = 0;
         for (int i = 1; i <= yellow; i++) {
-            for (int j = 1; j <= yellow; j++) {
-                if ((i * j == yellow) && (2 * i + 2 * j + 4 == brown)) {
-                    width = j + 2;
-                    height = i + 2;
-                    return new int[] {width, height};
-                }
+            if ((yellow % i == 0) && (2 * i + 2 * (yellow / i) + 4 == brown)) {
+                height = i + 2;
+                width = (yellow / i) + 2;
+                break;
             }
         }
         
