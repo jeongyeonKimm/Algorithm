@@ -1,6 +1,7 @@
 class Solution {
     public int solution(int[] arr) {
         // A * B = gcd * lcm
+        // lcm = (A / gcd) * (b / gcd) * gcd
         int lcm = arr[0];
         for (int i = 1; i < arr.length; i++) {
             int g = gcd(lcm, arr[i]);
