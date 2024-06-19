@@ -1,15 +1,15 @@
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 class Solution {
     public int[] solution(int n, String[] words) {
-        Map<String, Integer> saidWords = new HashMap<>();
+        Set<String> saidWords = new HashSet<>();
         
         int number = 0;
         int turn = 0; 
         
         String curWord = words[0];
-        saidWords.put(curWord, 1);
+        saidWords.add(curWord);
         
         for (int i = 1; i < words.length; i++) {
             curWord = words[i];
@@ -17,12 +17,13 @@ class Solution {
             char curFirstAlpha = curWord.charAt(0);
             char prevLastAlpha = prevWord.charAt(prevWord.length() - 1);
             
-            if ((saidWords.getOrDefault(curWord, 0) == 1) || (i > 0 && prevLastAlpha != curFirstAlpha)) {
+            saidWords.add(curWord);
+            
+            if ((saidWords.size() != i + 1) || (i > 0 && prevLastAlpha != curFirstAlpha)) {
                 number = (i % n) + 1;
                 turn = (i / n) + 1;
                 break;
             }
-            saidWords.put(curWord, 1);
         }
         return new int[] {number, turn};
     }
