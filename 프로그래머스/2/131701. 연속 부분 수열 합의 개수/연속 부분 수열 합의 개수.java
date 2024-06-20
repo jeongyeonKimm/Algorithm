@@ -3,18 +3,16 @@ import java.util.HashSet;
 
 class Solution {
     public int solution(int[] elements) {
-        Set<Integer> hs =  new HashSet<>();
+        Set<Integer> set =  new HashSet<>();
+        int[] dp = new int[elements.length + 1];
         
         for (int i = 1; i <= elements.length; i++) {
             for (int j = 0; j < elements.length; j++) {
-                int sum = 0;
-                for (int k = j; k < j + i; k++) {
-                    sum += elements[k % elements.length];
-                }
-                hs.add(sum);
+                dp[i] += elements[(i + j - 1) % elements.length];
+                set.add(dp[i]);
             }
         }
         
-        return hs.size();
+        return set.size();
     }
 }
