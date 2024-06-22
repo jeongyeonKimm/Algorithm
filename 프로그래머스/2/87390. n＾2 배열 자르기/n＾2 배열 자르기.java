@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     public int[] solution(int n, long left, long right) {
         int[] arr = new int[(int) right - (int) left + 1];
