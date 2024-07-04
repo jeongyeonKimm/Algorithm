@@ -5,14 +5,12 @@ class Solution {
             numbers += Integer.toString(i, n);
         }
         
-        numbers = numbers.toUpperCase();
-        
         String answer = "";
         for (int i = p - 1; i < numbers.length(); i += m) {
             answer += numbers.charAt(i);
             if (answer.length() == t) break;
         }
         
-        return answer;
+        return answer.toUpperCase();
     }
 }
