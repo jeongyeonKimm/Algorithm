@@ -3,12 +3,9 @@ import java.util.ArrayList;
 class Solution {
     
     private char[] vowels = {'A', 'E', 'I', 'O', 'U'};
-    private int count = 0;
-    private ArrayList<String> list;
+    private ArrayList<String> list = new ArrayList<>();
     
     public int solution(String word) {
-        list = new ArrayList<>();
-        
         dfs("", 0);
         
         return list.indexOf(word);
