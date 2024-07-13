@@ -1,27 +1,18 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
 class Solution {
     public int solution(String skill, String[] skill_trees) {
-        int count = 0;
+        ArrayList<String> skillTrees = new ArrayList<>(Arrays.asList(skill_trees));
+        Iterator<String> it = skillTrees.iterator();
         
-        for (String str : skill_trees) {
-            int idx = 0;
-            boolean flag = true;
-            for (char c : str.toCharArray()) {
-                int cur = skill.indexOf(c);
-                if (cur == -1) {
-                    continue;
-                }
-                
-                if (cur == idx) {
-                    idx++;
-                } else {
-                    flag = false;
-                    break;
-                }
+        while (it.hasNext()) {
+            if (skill.indexOf(it.next().replaceAll("[^" + skill + "]", "")) != 0) {
+                it.remove();
             }
-            
-            if (flag) count++;
         }
         
-        return count;
+        return skillTrees.size();
     }
 }
