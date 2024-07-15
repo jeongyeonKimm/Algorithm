@@ -7,7 +7,9 @@ class Solution {
         
         for (String r : records) {
             String[] info = r.split("[: ]");
-            int time = Integer.parseInt(info[0]) * 60 + Integer.parseInt(info[1]);
+            int hour = Integer.parseInt(info[0]);
+            int minute = Integer.parseInt(info[1]);
+            int time = getTime(hour, minute);
             String carNum = info[2];
             String inOrOut = info[3];
             
@@ -25,7 +27,7 @@ class Solution {
             }
         }
         
-        int finalTime = 23 * 60 + 59;
+        int finalTime = getTime(23, 59);
         int baseTime = fees[0];
         int baseFee = fees[1];
         int unitTime = fees[2];
@@ -60,5 +62,9 @@ class Solution {
         }
         
         return result;
+    }
+    
+    private int getTime(int hour, int minute) {
+        return hour * 60 + minute;
     }
 }
