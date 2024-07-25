@@ -59,6 +59,7 @@ class Solution {
     }
     
     private void moveMap(int m, int n) {
+        // 밑에서부터 보는 이유는 블록이 떨어지는 횟수를 줄이기 위해서
         for (int i = m - 1; i >= 0; i--) {
             for (int j = 0; j < n; j++) {
                 if (map[i][j] != '-') {
