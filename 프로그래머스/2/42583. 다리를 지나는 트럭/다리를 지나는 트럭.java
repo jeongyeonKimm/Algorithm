@@ -24,12 +24,7 @@ class Solution {
                 onBridge.offer(0);
             }
         }
-        
-        while (!onBridge.isEmpty()) {
-            onBridge.poll();
-            second++;
-        }
     
-        return second;
+        return second + bridge_length;
     }
 }
