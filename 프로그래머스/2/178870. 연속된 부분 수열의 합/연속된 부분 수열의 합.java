@@ -17,7 +17,7 @@ class Solution {
                 }
             }
             
-            sum -= sequence[i];
+            sum -= sequence[i]; // sum에서 i번째 수만 빼서 sum을 다시 계산하는 비용을 줄임(sum: 인덱스 i ~ idx의 합)
         }
         
         return new int[] {start, end};
