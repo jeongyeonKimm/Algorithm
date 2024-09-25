@@ -8,27 +8,11 @@ public class Main {
         int n = sc.nextInt();
         int k = sc.nextInt();
 
-        if (n <= k) {
-            System.out.println(0);
-            return;
-        }
-
         int result = 0;
-        while (true) {
-            int cur = n + result;
-            int count = 0;
 
-            while (cur > 0) {
-                if (cur % 2 != 0) {
-                    count++;
-                }
-                cur /= 2;
-            }
-
-            if (count <= k) {
-                break;
-            }
-            result++;
+        while (Integer.bitCount(n) > k) {
+            result += n & (-n);
+            n += n & (-n);
         }
 
         System.out.println(result);
