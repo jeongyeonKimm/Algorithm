@@ -14,12 +14,14 @@ public class Main {
         int result = 0;
 
         if (L.length() == R.length()) {
-            int idx = 0;
-            while (idx < L.length() && L.charAt(idx) == R.charAt(idx)) {
-                if (L.charAt(idx) == '8') {
+            for (int i = 0; i < L.length(); i++) {
+                if (L.charAt(i) != R.charAt(i)) {
+                    break;
+                }
+
+                if (L.charAt(i) == '8') {
                     result++;
                 }
-                idx++;
             }
         }
 
