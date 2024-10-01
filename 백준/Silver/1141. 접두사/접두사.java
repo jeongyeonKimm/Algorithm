@@ -16,7 +16,7 @@ public class Main {
             words[i] = br.readLine();
         }
 
-        Arrays.sort(words, (a, b) -> b.length() - a.length());  // 단어들을 길이순으로 정렬
+        Arrays.sort(words, (a, b) -> b.length() - a.length());  // 단어들을 길이 내림차순으로 정렬
 
         int count = 0;
 
