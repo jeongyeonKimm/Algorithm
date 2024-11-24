@@ -2,26 +2,24 @@ import java.util.*;
 
 class Solution {
     public int solution(int n, int k, int[] enemy) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        
         int answer = enemy.length;
-        Queue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-
-        int my = n;
-        int card = k;
         for (int i = 0; i < enemy.length; i++) {
-            my -= enemy[i];
-            pq.add(enemy[i]);
-
-            if (my < 0) {
-                if (card > 0 && !pq.isEmpty()) {
-                    my += pq.poll();
-                    card--;
+            n -= enemy[i];
+            pq.offer(enemy[i]);
+                
+            if (n < 0) {
+                if (k > 0 && !pq.isEmpty()) {
+                    n += pq.poll();
+                    k--;
                 } else {
                     answer = i;
                     break;
                 }
             }
         }
-
+        
         return answer;
     }
 }
