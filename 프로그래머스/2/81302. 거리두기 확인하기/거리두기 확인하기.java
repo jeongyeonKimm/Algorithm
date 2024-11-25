@@ -9,9 +9,9 @@ class Solution {
         int[] result = new int[5];
         
         for (int i = 0; i < places.length; i++) {
-            char[][] room = new char[5][5];
+            String[] room = new String[5];
             for (int j = 0; j < 5; j++) {
-                room[j] = places[i][j].toCharArray();
+                room[j] = places[i][j];
             }
             
             result[i] = checkRoom(room);
@@ -20,10 +20,10 @@ class Solution {
         return result;
     }
     
-    private int checkRoom(char[][] room) {
+    private int checkRoom(String[] room) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                if (room[i][j] == 'P') {
+                if (room[i].charAt(j) == 'P') {
                     if (!checkDistance(room, i, j)) {
                         return 0;
                     }
@@ -34,7 +34,7 @@ class Solution {
         return 1;
     }
     
-    private boolean checkDistance(char[][] room, int x, int y) {
+    private boolean checkDistance(String[] room, int x, int y) {
         boolean[][] visited = new boolean[5][5];
         Queue<Location> q = new LinkedList<>();
         q.offer(new Location(x, y));
@@ -55,11 +55,11 @@ class Solution {
                 
                 int distance = Math.abs(nx - x) + Math.abs(ny - y);
                 
-                if (room[nx][ny] == 'P' && distance <= 2) {
+                if (room[nx].charAt(ny) == 'P' && distance <= 2) {
                     return false;
                 }
                 
-                if (room[nx][ny] == 'O' && distance < 2) {
+                if (room[nx].charAt(ny) == 'O' && distance < 2) {
                     q.offer(new Location(nx, ny));
                     visited[nx][ny] = true;
                 }
