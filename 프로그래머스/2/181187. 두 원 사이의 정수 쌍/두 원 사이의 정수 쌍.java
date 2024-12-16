@@ -7,7 +7,7 @@ class Solution {
         long count = 0;
         
         for (int i = 0; i <= radius; i++) {
-            count += (int) Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2));
+            count += (int) Math.floor(Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2)));
         }
         
         return 4 * count + 1;
@@ -17,7 +17,7 @@ class Solution {
         long count = 0;
         
         for (int i = 1; i < radius; i++) {
-            int len = (int) Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2));
+            int len = (int) Math.floor(Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2)));
             if (Math.pow(radius, 2) == Math.pow(i, 2) + Math.pow(len, 2)) {
                 count++;
             }
