@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Arrays;
 
 class Solution {
     
@@ -10,28 +10,18 @@ class Solution {
             parent[i] = i;
         }
         
-        List<Bridge> bridges = new ArrayList<>();
-        for (int[] cost : costs) {
-            bridges.add(new Bridge(cost[0], cost[1], cost[2]));
-        }
-        
-        Collections.sort(bridges, new Comparator<Bridge>() {
-            @Override
-            public int compare(Bridge b1, Bridge b2) {
-                return b1.cost - b2.cost;
-            }
-        });
+        Arrays.sort(costs, (b1, b2) -> b1[2] - b2[2]);
         
         int result = 0;
         
-        for (Bridge b : bridges) {
-            int v1 = b.v1;
-            int v2 = b.v2;
-            int cost = b.cost;
+        for (int[] cost : costs) {
+            int v1 = cost[0];
+            int v2 = cost[1];
+            int c = cost[2];
             
             if (findParent(v1) != findParent(v2)) {
                 unionParent(v1, v2);
-                result += cost;
+                result += c;
             }
         }
         
@@ -51,17 +41,5 @@ class Solution {
         
         if (v1 < v2) parent[v2] = v1;
         else parent[v1] = v2;
-    }
-    
-    class Bridge {
-        int v1;
-        int v2;
-        int cost;
-        
-        public Bridge(int v1, int v2, int cost) {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.cost = cost;
-        }
     }
 }
