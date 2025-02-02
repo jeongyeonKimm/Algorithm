@@ -13,21 +13,21 @@ class Solution {
                 min = mid + 1;
             } else {
                 max = mid - 1;
-                finishTime = mid;
-                task = count;
+                finishTime = mid;   // 작업이 종료된 시각
+                task = count;   // finishTime에 처리될 수 있는 작업의 수
             }
         }
         
         int answer = 0;
         
-        task -= n;
+        task -= n;  // 처리해야 될 n개의 작업 처리 완료
         for (int i = cores.length - 1; i >= 0; i--) {
             if (finishTime % cores[i] == 0) {
                 if (task == 0) {
                     answer = i + 1;
                     break;
                 }
-                task--;
+                task--; // n번째 작업 처리 코어를 찾기 위해 finishTime에 처리 가능한 작업들 중 n번째 이후의 작업을 배제해야 하므로 n개를 처리하고 남은 task를 줄이면서 마지막 코어 찾기
             }
         }
         
