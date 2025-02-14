@@ -1,29 +1,31 @@
 class Solution {
     
+    private boolean[] visited;
     private int maxCount = 0;
     
     public int solution(int[] info, int[][] edges) {
         int n = info.length;
         
-        dfs(info, edges, new boolean[n], 0, 0, 0);
+        visited = new boolean[n];
+        
+        dfs(info, edges, 0, 0, 0);
         
         return maxCount;
     }
     
-    private void dfs(int[] info, int[][] edges, boolean[] visited, int idx, int sheepCount, int wolfCount) {
+    private void dfs(int[] info, int[][] edges, int idx, int sheepCount, int wolfCount) {
         visited[idx] = true;
         
         if (info[idx] == 0) {
             sheepCount++;
-            if (sheepCount > maxCount) {
-                maxCount = sheepCount;
-            }
+            maxCount = Math.max(maxCount, sheepCount);
         } else {
             wolfCount++;
         }
             
         
         if (sheepCount <= wolfCount) {
+            visited[idx] = false;
             return;
         }
         
@@ -32,9 +34,10 @@ class Solution {
             int child = edge[1];
             
             if (visited[parent] && !visited[child]) {
-                boolean[] newVisited = visited.clone();
-                dfs(info, edges, newVisited, child, sheepCount, wolfCount);
+                dfs(info, edges, child, sheepCount, wolfCount);
             }
         }
+        
+        visited[idx] = false;
     }
 }
