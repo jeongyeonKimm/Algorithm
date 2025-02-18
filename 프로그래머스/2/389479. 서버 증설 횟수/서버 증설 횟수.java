@@ -17,7 +17,7 @@ class Solution {
             if (need > 0) {
                 size += need;
                 count += need;
-                pq.offer(new int[] {i + k, need});
+                pq.offer(new int[] {i + k, need});  // 만료시간, 추가로 증설된 서버의 개수
             }
         }
         
