@@ -7,7 +7,7 @@ class Solution {
         int count = 0;  // 서버 증설 횟수
         
         for (int i = 0; i < 24; i++) {
-            while (!pq.isEmpty() && pq.peek()[0] == i) {
+            if (!pq.isEmpty() && pq.peek()[0] == i) {
                 size -= pq.poll()[1];
             }
             
