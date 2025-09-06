@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
@@ -8,21 +9,20 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(br.readLine());
+        int[] t = new int[n];
+        int[] p = new int[n];
 
-        int[] T = new int[n];
-        int[] P = new int[n];
-
+        StringTokenizer st;
         for (int i = 0; i < n; i++) {
-            String[] input = br.readLine().split(" ");
-            T[i] = Integer.parseInt(input[0]);
-            P[i] = Integer.parseInt(input[1]);
+            st = new StringTokenizer(br.readLine());
+            t[i] = Integer.parseInt(st.nextToken());
+            p[i] = Integer.parseInt(st.nextToken());
         }
 
         int[] dp = new int[n + 1];
-
         for (int i = 0; i < n; i++) {
-            if (i + T[i] <= n) {
-                dp[i + T[i]] = Math.max(dp[i] + P[i], dp[i + T[i]]);
+            if (i + t[i] <= n) {
+                dp[i + t[i]] = Math.max(dp[i + t[i]], dp[i] + p[i]);
             }
             dp[i + 1] = Math.max(dp[i + 1], dp[i]);
         }
